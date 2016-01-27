@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>3D clock</title>
+	</head>
+	<style>
+		.wrap {
+		  margin-top: 150px;
+		  perspective: 1000px;
+		  perspective-origin: 50% 50%;
+		}
+		
+		.cube {
+		  margin: auto;
+		  position: relative;
+		  height: 200px;
+		  width: 200px;
+		  transform-style: preserve-3d;
+		   animation: rotate 20s infinite linear;
+		}
+
+		.cube > div {
+		  position: absolute;
+		  box-sizing: border-box;
+		  padding: 10px;
+		  height: 100%;
+		  width: 100%;
+		  opacity: 0.9;
+		  border: solid 1px #eeeeee;
+		  color: #ffffff;
+		  background:lightblue;
+		  transition: transform 0.2s ease-in;
+		}
+		
+		.front {
+		  transform: translateZ(100px);
+		  background-color:lightblue;
+		}
+
+		.back {
+		  transform: translateZ(-100px) rotateY(180deg);
+		}
+
+		.right {
+		  transform: rotateY(-270deg) translateX(100px);
+		  transform-origin: top right;
+		}
+
+		.left {
+		  transform: rotateY(270deg) translateX(-100px);
+		  transform-origin: center left;
+		}
+
+		.top {
+		  transform: rotateX(-270deg) translateY(-100px);
+		  transform-origin: top center;
+		}
+
+		.bottom {
+		  transform: rotateX(270deg) translateY(100px);
+		  transform-origin: bottom center;
+		}
+		
+		@keyframes rotate {
+		  from {
+			transform: rotateX(0deg) rotateY(0deg);
+		  }
+		  
+		  to {
+			transform: rotateX(360deg) rotateY(360deg);
+		  }
+		}
+		
+		.wrap:hover .front {
+		  transform: translateZ(200px);
+		}
+		.wrap:hover .back {
+		  transform: translateZ(-200px) rotateY(180deg);
+		}
+		.wrap:hover .right {
+		  transform: rotateY(-270deg) translateZ(100px) translateX(100px);
+		}
+		.wrap:hover .left {
+		  transform: rotateY(270deg) translateZ(100px) translateX(-100px);
+		}
+		.wrap:hover .top {
+		  transform: rotateX(-270deg) translateZ(100px) translateY(-100px);
+		}
+		.wrap:hover .bottom {
+		  transform: rotateX(270deg) translateZ(100px) translateY(100px);
+		}
+		
+		.front img {
+			width:100%;
+			height:100%;
+		}
+		
+		.clock {
+			position:relative;
+			width:180px;
+			height:180px;
+			border:5px orange groove;
+			margin:0 auto;			
+			border-radius:50%;
+			background:white;
+		}
+		
+		.arrow {
+			position:absolute;
+			width:70px;
+			height:2px;
+			background:lime;
+			margin-top:90px;
+			margin-left:90px;
+			transform-origin:0% 0%;
+			transform:rotate(0deg);
+			-webkit-animation:clockMove 60s infinite steps(60);
+		}
+		
+		.arrow-min {
+			position:absolute;
+			width:70px;
+			height:4px;
+			background:blue;
+			margin-top:90px;
+			margin-left:90px;
+			transform-origin:0% 0%;
+			transform:rotate(45deg);
+			-webkit-animation:clockMove 3600s infinite steps(60);
+		}
+		
+		.arrow-h {
+			position:absolute;
+			width:50px;
+			height:4px;
+			background:orange;
+			margin-top:90px;
+			margin-left:90px;
+			transform-origin:0% 0%;
+			transform:rotate(12deg);
+			-webkit-animation:clockMove 86400s infinite steps(60);
+		}
+		
+		.point-center {
+			position:absolute;
+			width:10px;
+			height:10px;
+			background:red;
+			border-radius:50%;
+			margin-top:87px;
+			margin-left:85px;
+		}
+		
+		@-webkit-keyframes clockMove {
+			100% {
+				transform:rotate(360deg);
+			}
+		}
+		
+		input[type="text"] {
+			margin-top:10px;
+			padding:5px;
+		}
+		
+		input[type="button"] {
+			margin-top:10px;
+			margin-left:70px;
+			padding:5px;
+		}
+	</style>
+	<body>
+		<div class="wrap">
+		  <div class="cube">
+			<div class="front">
+				<img src="img/f1.png">
+			</div>
+			<div class="back">
+			  Back side
+			</div>
+			<div class="top">
+				  <div class="clock">
+					<div class="arrow"></div>
+					<div class="arrow-min"></div>
+					<div class="arrow-h"></div>
+					<div class="point-center"></div>
+				  </div>
+			</div>
+			<div class="bottom">
+				<form>
+					<input type="text">
+					<input type="text">
+					<input type="text">
+					<input type="button" value="Send">
+				</form>
+			</div>
+			<div class="left">
+			  Left side
+			</div>
+			<div class="right">
+			  Right side
+			</div>
+		  </div>
+		</div>
+	</body>
+</html>
